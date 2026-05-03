@@ -45,7 +45,8 @@ function SetupWallet() {
       }
 
       const res = await axios.post(
-        "http://localhost:5000/api/users/setup-wallet",
+        // "http://localhost:5000/api/users/setup-wallet",
+        `${import.meta.env.VITE_API_URL}/api/users/setup-wallet`,
         { bankAccount, ifsc: ifsc.toUpperCase(), currency },
         {
           headers: {
