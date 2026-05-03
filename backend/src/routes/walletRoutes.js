@@ -200,7 +200,7 @@
 
 
 import express from "express";
-import Wallet from "../models/wallet.js";
+import Wallet from "../models/Wallet.js";
 import Transaction from "../models/Transaction.js";
 import protect from "../middleware/authMiddleware.js";
 import { convertCurrency } from "../utils/currencyConverter.js";
