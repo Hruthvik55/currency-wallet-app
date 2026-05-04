@@ -107,14 +107,26 @@ dotenv.config();
 const app = express();
 
 // ======================================
-// CORS CONFIG (FIXED)
+// CORS CONFIG (FINAL FIX)
 // ======================================
+const allowedOrigins = [
+  "http://localhost:5173", // local frontend
+  "https://currency-wallet-app.vercel.app", // ACTUAL deployed frontend
+  "https://currency-wallet-a64afrf0f-hruthvik-rs-projects.vercel.app" // optional (old link)
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // local frontend
-      "https://currency-wallet-a64afrf0f-hruthvik-rs-projects.vercel.app" // deployed frontend
-    ],
+    origin: function (origin, callback) {
+      // allow requests with no origin (like Postman)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
