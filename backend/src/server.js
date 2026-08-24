@@ -15,11 +15,42 @@ const app = express();
 // ======================================
 // CORS CONFIG (FINAL FIX)
 // ======================================
+// const allowedOrigins = [
+//   "http://localhost:5173", // local frontend
+//   "https://currency-wallet-app.vercel.app", // ACTUAL deployed frontend
+//   "https://currency-wallet-a64afrf0f-hruthvik-rs-projects.vercel.app" // optional (old link)
+// ];
+
+
+
+// ======================================
+// CORS CONFIG
+// ======================================
 const allowedOrigins = [
-  "http://localhost:5173", // local frontend
-  "https://currency-wallet-app.vercel.app", // ACTUAL deployed frontend
-  "https://currency-wallet-a64afrf0f-hruthvik-rs-projects.vercel.app" // optional (old link)
+  "http://localhost:5173",
+  "https://currency-wallet-frontend.vercel.app",
 ];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
+app.options("*", cors());
+
+
+
 
 app.use(
   cors({
