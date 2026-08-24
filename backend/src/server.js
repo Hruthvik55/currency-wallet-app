@@ -1,5 +1,3 @@
-
-
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -13,64 +11,31 @@ dotenv.config();
 const app = express();
 
 // ======================================
-// CORS CONFIG (FINAL FIX)
-// ======================================
-// const allowedOrigins = [
-//   "http://localhost:5173", // local frontend
-//   "https://currency-wallet-app.vercel.app", // ACTUAL deployed frontend
-//   "https://currency-wallet-a64afrf0f-hruthvik-rs-projects.vercel.app" // optional (old link)
-// ];
-
-
-
-// ======================================
 // CORS CONFIG
 // ======================================
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://currency-wallet-app.vercel.app",
   "https://currency-wallet-frontend.vercel.app",
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
+      // Allow requests without an origin, e.g. Postman
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
+        return callback(null, true);
       }
+
+      return callback(new Error("Not allowed by CORS"));
     },
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
-
-app.options("*", cors());
-
-
-
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (like Postman)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
-
-// Handle preflight requests
-app.options("*", cors());
 
 // ======================================
 // MIDDLEWARE
