@@ -46,12 +46,12 @@
 }
 
 .btn-primary {
-  background-color: #2563eb; /* blue-600 */
+  background-color: #2563eb;
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #1e40af; /* darker */
+  background-color: #1e40af;
 }
 
 .btn-secondary {
@@ -70,6 +70,15 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Server Notice */
+.server-note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #777;
+  max-width: 450px;
+  line-height: 1.5;
+}
+
 /* Features Section */
 .features {
   display: grid;
@@ -83,9 +92,8 @@
   margin-bottom: 0.5rem;
 }
 
-
 .transfer-img {
-  width: 400px;   /* adjust size */
-  height: auto;   /* keeps aspect ratio */
-  border-radius: 8px; /* optional, gives rounded corners */
+  width: 400px;
+  height: auto;
+  border-radius: 8px;
 }
