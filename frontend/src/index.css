@@ -3,7 +3,7 @@
 
 
 /* Reset margins and force full-screen */
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -12,4 +12,25 @@
 html, body, #root {
   height: 100%;
   width: 100%;
+} */
+
+/* src/index.css */
+
+/* Global reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
 }

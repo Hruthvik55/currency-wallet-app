@@ -44,7 +44,9 @@
 //   );
 // }
 
-// // src/pages/Transfer.jsx
+import "./Transfer.css";
+
+// src/pages/Transfer.jsx
 import React, { useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
